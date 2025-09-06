@@ -13,7 +13,7 @@ import { keepPreviousData, useQuery } from "@tanstack/react-query";
 
 export default function App() {
   const [searchWord, setSearchWord] = useState<string>("");
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  // const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
   const [page, setPage] = useState(1);
 
@@ -34,11 +34,9 @@ export default function App() {
 
   const openModal = (movie: Movie) => {
     setSelectedMovie(movie);
-    setIsModalOpen(true);
   };
 
   const closeModal = () => {
-    setIsModalOpen(false);
     setSelectedMovie(null);
   };
 
@@ -67,7 +65,7 @@ export default function App() {
       {isLoading && <Loader />}
       {isError && <ErrorMessage />}
       {data && <MovieGrid movies={data.results} onSelect={openModal} />}
-      {isModalOpen && selectedMovie && (
+      {selectedMovie && (
         <MovieModal movie={selectedMovie} onClose={closeModal} />
       )}
     </div>
